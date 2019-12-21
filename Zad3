@@ -1,0 +1,44 @@
+'''
+# Zadanie #3Zaimplementuj klasę `ElectricCar` odwzorowującą zachowanie samochodu elektrycznego.
+Klasa powinna umożliwiać pokonanie zadanego dystansu, który nie może przekroczyć maksymalnego zasięgu zdefiniowanego dla samochodu.
+Samochód powinien mieć także możliwość naładowania baterii.>>> car = ElectricCar(100)
+>>> car.drive(70)
+70
+>>> car.drive(50)
+30
+>>> car.drive(50)
+0
+>>> car.charge()
+>>> car.drive(50)
+50
+'''
+
+class ElectricCar:
+    def __init__(self, zasieg):
+        print("Creating electric car")
+        self.zasieg = zasieg
+        self.max_zasieg = zasieg
+
+    def drive(self, dystans):
+        if dystans <= self.zasieg:
+            self.zasieg -= dystans
+            return dystans
+        else:
+            wynik = self.zasieg
+            self.zasieg = 0
+            return wynik
+
+    def charge(self):
+        self.zasieg = self.max_zasieg
+
+    def stan_paliwa(self):
+        print(f'{self.zasieg/self.max_zasieg} km')
+
+c = ElectricCar(100)
+print(c.drive(70))
+c.stan_paliwa()
+print(c.drive(50))
+print(c.drive(50))
+c.charge()
+print(c.drive(50))
+
