@@ -1,0 +1,16 @@
+class Samochod:
+    def __init__(self, marka): #python magic methods - magiczne metody określonedwoma podkreśleniami
+        print("Uwaga, tworze samochod") #wyświetla która funkcja się uruchomi
+        self.marka = marka
+
+    def inicjuj(self, marka):
+        self.marka = marka
+
+    def jedz(self):
+        print(f'{self.marka}: brum brum')
+
+
+print("start")
+x = Samochod("Skoda")
+print("samochod stworzony")
+x.jedz()
