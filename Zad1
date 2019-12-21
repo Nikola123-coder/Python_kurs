@@ -1,0 +1,27 @@
+'''
+# Zadanie #1Zaimplementuj klasę `Product` przechowującą informację o cenie, nazwie oraz ID produktu. Zaimplementuj metodę wypisującą informację o produkcie na konsolę.Przykład użycia:>>> product = Product(1, 'Woda', 10.99)
+>>> product.print_info()
+Produkt "Woda", id: 1, cena: 10.99 PLN
+'''
+
+class Product:
+    def __init__(self, name, cena, ID): #trzeba zdefiniować tu wszystkie metody np. self. name
+        print("Creates a product")
+        self.name = name
+        self.cena = cena
+        self.ID = ID
+
+
+    def dane(self):
+        print(f'Name: {self.name}, Price: {self.cena} PLN, ID:{self.ID}')
+
+#    def ID(self, ID):
+ #       print(f'{self.name}: R16')
+
+x = Product("Headphones", 120, 6)
+y = Product("Earphones", 100, 5)
+print("Product was created")
+
+x.dane()
+y.dane()
+
