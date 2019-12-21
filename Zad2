@@ -1,0 +1,55 @@
+'''
+# Zadanie #2Zaimplementuj klasę `Employee` umożliwiającą rejestrowanie czasu pracy oraz wypłacanie pensji na podstawie zadanej stawki godzinowej.
+Jeżeli pracownik będzie pracował więcej niż 8 godzin (podczas pojedynczej rejestracji czasu) to kolejne godziny policz jako nadgodziny (z podwójną stawką godzinową).
+Przykład użycia:>>> employee = Employee('Jan', 'Nowak', 100.0)
+>>> employee.register_time(5)
+>>> employee.pay_salary()
+500.0
+>>> employee.pay_salary()
+0.0
+>>> employee.register_time(10)
+>>> employee.pay_salary()
+1200.0
+'''
+
+class Employee:
+    def __init__(self, imie, nazwisko, stawka_godzinowa):
+        print("Tworzy pracownika")
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.stawka_godzinowa = stawka_godzinowa
+        self.czas_pracy = 0
+
+
+    def dane_pracownika (self):
+        print(f'Imię: {self.imie}, Nazwisko: {self.nazwisko}, Stawka godzinowa: {self.stawka_godzinowa} PLN')
+
+    def register_czas_pracy(self, czas_pracy):
+        print(f"Pracownik przepracował: {czas_pracy} ")
+
+        if czas_pracy <= 8:
+            self.czas_pracy += czas_pracy
+        else:
+            self.czas_pracy += 8 + (czas_pracy - 8)*2
+
+
+
+    def pay_pensja(self):
+        print(f'Pensja: {self.czas_pracy * self.stawka_godzinowa} PLN')
+
+
+
+
+
+employee_1 = Employee("Marek", "Nowak", 100)
+
+employee_1.dane_pracownika()
+employee_1.register_czas_pracy(5)
+employee_1.register_czas_pracy(5)
+employee_1.pay_pensja()
+
+
+
+
+
+
