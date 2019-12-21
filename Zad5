@@ -16,20 +16,20 @@ True
 class CashMachine:
 
     def __init__(self):
-        self.zawartosc = []
+        self._zawartosc = [] #._zawartosc - prywatne, nie można zmieniać z zewnątrz
 
     def is_available(self):
        # return bool(self.zawartosc) #dostaniemy False jesli pusta, jeśli coś jest bedzie True - dzieki temu wiemy czy jest cos w bankomacie
-        return len(self.zawartosc) > 0
+        return len(self._zawartosc) > 0
 
     def put_money(self, banknoty):
-        self.zawartosc.extend(banknoty) #wszystkie banknoty doda po kolei do listy
+        self._zawartosc.extend(banknoty) #wszystkie banknoty doda po kolei do listy
        # for b in banknoty:
            # self.zawartosc.append(b)
 
     def withdraw_money(self, ile):
         wynik = []
-        for b in self.zawartosc:
+        for b in self._zawartosc:
             if b <= ile:
                 wynik.append(b)
                 ile -= b
@@ -37,7 +37,7 @@ class CashMachine:
             return []
         #usunąć wszystkie banknoty z self.zawartosc
         for b in wynik:
-            self.zawartosc.remove(b)
+            self._zawartosc.remove(b)
 
         return wynik
 
@@ -48,4 +48,6 @@ bankomat.put_money([200, 100, 100, 50])
 print(bankomat.withdraw_money(150))
 print(bankomat.withdraw_money(150))
 print(bankomat.withdraw_money(300))
+
+print(bankomat._zawartosc)
 
