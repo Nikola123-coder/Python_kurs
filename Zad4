@@ -1,0 +1,67 @@
+'''
+# Zadanie #4
+Zaimplementuj klasę `Basket` umożliwiającą dodawanie produktów w określonej liczbie do koszyka.
+Zaimplementuj metodę obliczającą całkowitą wartość koszyka oraz wypisującą informację o zawartości koszyka.
+Dodanie dwa razy tego samego produktu do koszyka powinno stworzyć tylko jedną pozycję.
+Przykład użycia:>>> basket = Basket()
+
+>>> product = Product(1, 'Woda', 10.00)
+>>> basket.add_product(product, 5)
+>>> basket.count_total_price()
+50.0
+>>> basket.generate_report()
+'Produkty w koszyku:\n
+- Woda (1), cena: 10.00 x 5\n
+W sumie: 50.00'
+'''
+
+
+class Product:
+    def __init__(self, name, cena, ID): #trzeba zdefiniować tu wszystkie metody np. self. name
+        print("Tworzy produkt")
+        self.name = name
+        self.cena = cena
+        self.ID = ID
+
+
+    def dane(self):
+        print(f'Name: {self.name}, Price: {self.cena} PLN, ID:{self.ID}')
+
+class Basket:
+
+    def __init__(self):
+        self.zawartosc = []
+
+    def add_product(self, p: Product, ilosc: int = 1):
+        for s in self.zawartosc:
+            if s["produkt"].ID == p.ID:
+                s["ilosc"] += ilosc
+                return #powoduje skończenie funkcji
+        #jesli tu dojdziemy tzn ze na liscie nie ma jeszcze takiego produktu
+        slownik = {"produkt": p, "ilosc": ilosc}
+        self.zawartosc.append(slownik)
+
+
+
+    def count_total_price(self):
+
+        suma = 0
+        for slow in self.zawartosc:
+            suma += slow["produkt"].cena * slow["ilosc"]
+        return suma
+
+
+
+p1 = Product("Headphones", 120, 6)
+p2 = Product("Earphones", 100, 5)
+
+b = Basket()
+b.add_product(p1)
+b.add_product(p2, 5)
+b.add_product(p1)
+
+
+
+print(b.count_total_price())
+print(b.zawartosc)
+
